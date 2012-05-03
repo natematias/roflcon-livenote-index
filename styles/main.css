@@ -1,0 +1,49 @@
+body{
+/*  background: #333;
+  color:#eee;*/
+}
+a{
+ color:#fC00aC;
+}
+a:hover{
+ color:#CC0066;
+}
+
+/*.nav > li > a:hover{
+  background:#aaa;
+}*/
+
+.hero-unit h1{
+  color:#025f08;
+}
+
+.nav-list > li > a, .nav-list .nav-header {
+    margin-left: -15px;
+    margin-right: -15px;
+    text-shadow: 0 1px 0 rgba(100, 100, 100, 0.3);
+}
+
+.btn{
+  border-color: rgba(6, 0, 0, 0.1) rgba(6, 0, 0, 0.1) rgba(6, 0, 0, 0.25);
+  background-color: #F50066;
+  background-image: -moz-linear-gradient(center top , #FF0088, #AA0066);
+  background-repeat: repeat-x;
+  color:white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #AA0066;
+/*  *background-color: #d9d9d9;*/
+  /* Buttons in IE7 don't get borders, so darken on hover */
+
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
