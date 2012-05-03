@@ -1,15 +1,18 @@
 var ROFLView = Backbone.View.extend({
-  main_listing: _.template($("#mainListing")).html(),
-  menu_item: _.template($("#menuItem")).html(),
+  main_listing: _.template($("#mainListingTemplate").html()),
+  default_listing: _.template($("#defaultListingTemplate").html()),
+  menu_item: _.template($("#menuItemTemplate").html()),
+  menu_header: _.template("<li class='nav-header'><%=title%></li>\n"),
 
-  initialize: function(){
+  initialize: function(data){
     that = this;
     // load the session data
-    jQuery.getJSON("data/schedule.json", function(data){
-      that.schedule = data;
-      that.createSideBar();
-    });
+    this.schedule = data;
+    this.createSideBar();
+  },
 
+  showDefault: function() {
+    $("#mainListing").html(this.default_listing());
   },
 
   populateMainListing: function(day, index) {
@@ -22,16 +25,18 @@ var ROFLView = Backbone.View.extend({
 
   createSideBar: function(){
     that = this;
-    this.menu_header = _.template("<li class='nav-header'><%=title%></li>\n");
-    var htmlBuffer = this.menu_header({"title":"Friday"});
-    $.each(this.schedule["Friday"], function(index, value){
-      htmlBuffer +=that.menu_item(value);
-    });
-
-    htmlBuffer += this.menu_header({"title":"Saturday"});
-    $.each(this.schedule["Saturday"], function(index, value){
-      htmlBuffer +=that.menu_item(value);
-    });
+    var htmlBuffer = "";
+    for (var day in that.schedule) {
+        htmlBuffer += that.menu_header({"title":"Friday"});
+        $.each(that.schedule[day], function(index, value){
+          htmlBuffer +=that.menu_item({
+              index: index,
+              day: day,
+              time: value.time,
+              title: value.title
+          });
+        });
+    }
     $('#roflbar').html(htmlBuffer);
   },
 
@@ -46,15 +51,22 @@ var ROFLView = Backbone.View.extend({
 
 });
 
-var roflView = new ROFLView;
-var ROFLRouter = Backbone.Router.extend({
-    routes: {
-        ":day/:index": roflView.populateMainListing
-        "": "showDefault"
-    },
-    showDefault: function() {
+jQuery.getJSON("data/schedule.json", function(data){
+    var roflView = new ROFLView(data);
+    var ROFLRouter = Backbone.Router.extend({
+        routes: {
+            ":day/:index": 'showPanel',
+            "": 'showDefault'
+        },
+        showPanel: function(day, index) {
+            roflView.populateMainListing(day, parseInt(index));
+        },
+        showDefault: function() {
+            roflView.showDefault();
+        }
 
-    }
+    });
+    var router = new ROFLRouter();
+    Backbone.history.start({pushState: false, root: "/"})
 });
-
 

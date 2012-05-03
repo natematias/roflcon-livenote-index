@@ -117,16 +117,20 @@
     <script language="javascript" type="text/Javascript" src="bootstrap/js/underscore.js"></script>
     <script language="javascript" type="text/Javascript" src="bootstrap/js/backbone.js"></script>
 
-    <script type='text/template' id='mainListing'>
+    <script type='text/template' id='mainListingTemplate'>
          <div class="hero-unit">
                     <h1><%=title%></h1>
                     <h2>Time: <%=time%></h2>
                     <p>Here is a description about liveblogging, with links to the hashtag and mstem and natematias's twitter accounts.</p>
          </div>
      </script>
-     <script type='text/template' id='menuItem'>
-        <li><a href="#"><%=time%>: <%=title%></a></li>
+     <script type='text/template' id='menuItemTemplate'>
+         <li><a href="#<%=day%>/<%=index%>"><%=time%>: <%=title%></a></li>
     </script>
+    <script type='text/template' id='defaultListingTemplate'>
+        ... all about live notes ...
+    </script>
+
     <script language="javascript" type="text/Javascript" src="app/views.js"></script>
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
