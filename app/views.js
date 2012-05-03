@@ -1,33 +1,23 @@
 var ROFLView = Backbone.View.extend({
-
+  main_listing: _.template($("#mainListing")).html(),
+  menu_item: _.template($("#menuItem")).html(),
 
   initialize: function(){
     that = this;
-    // load the menu item template
-
-    $.ajax({url:"templates/menu_item.template",
-              type: "GET",
-              dataType: "text",
-              success: function(data){
-                that.menu_item = _.template(data);
-              }
-    });
-
-    // load the main listing template
-    $.ajax({url:"templates/main_listing.template",
-              type: "GET",
-              dataType: "text",
-              success: function(data){
-                that.main_listing = _.template(data);
-              }
-    });
-
     // load the session data
     jQuery.getJSON("data/schedule.json", function(data){
       that.schedule = data;
       that.createSideBar();
     });
 
+  },
+
+  populateMainListing: function(day, index) {
+    var listing = this.schedule[day][index];
+    $("#mainListing").html(this.main_listing({
+        title: listing.title,
+        time: listing.time
+    }));
   },
 
   createSideBar: function(){
@@ -52,8 +42,19 @@ var ROFLView = Backbone.View.extend({
   cleanEvent: function(e){
     e.stopPropagation()
     e.preventDefault()
-  },
+  }
 
 });
 
 var roflView = new ROFLView;
+var ROFLRouter = Backbone.Router.extend({
+    routes: {
+        ":day/:index": roflView.populateMainListing
+        "": "showDefault"
+    },
+    showDefault: function() {
+
+    }
+});
+
+

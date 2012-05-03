@@ -75,7 +75,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span8">
+        <div class="span8" id='mainListing'>
           <div class="hero-unit">
             <h1>Keynote Panel: Supercuts</h1>
             <p>Saturday, 9:30AM</p>
@@ -116,6 +116,17 @@
     <script language="javascript" type="text/Javascript" src="bootstrap/js/jquery-1.7.2.min.js"></script>
     <script language="javascript" type="text/Javascript" src="bootstrap/js/underscore.js"></script>
     <script language="javascript" type="text/Javascript" src="bootstrap/js/backbone.js"></script>
+
+    <script type='text/template' id='mainListing'>
+         <div class="hero-unit">
+                    <h1><%=title%></h1>
+                    <h2>Time: <%=time%></h2>
+                    <p>Here is a description about liveblogging, with links to the hashtag and mstem and natematias's twitter accounts.</p>
+         </div>
+     </script>
+     <script type='text/template' id='menuItem'>
+        <li><a href="#"><%=time%>: <%=title%></a></li>
+    </script>
     <script language="javascript" type="text/Javascript" src="app/views.js"></script>
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
