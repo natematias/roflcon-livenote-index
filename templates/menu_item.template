@@ -1,1 +1,0 @@
-<li><a href="#"><%=time%>: <%=title%></a></li>

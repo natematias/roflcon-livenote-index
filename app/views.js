@@ -1,47 +1,42 @@
 var ROFLView = Backbone.View.extend({
+  main_listing: _.template($("#mainListingTemplate").html()),
+  default_listing: _.template($("#defaultListingTemplate").html()),
+  menu_item: _.template($("#menuItemTemplate").html()),
+  menu_header: _.template("<li class='nav-header'><%=title%></li>\n"),
 
-
-  initialize: function(){
+  initialize: function(data){
     that = this;
-    // load the menu item template
-
-    $.ajax({url:"templates/menu_item.template",
-              type: "GET",
-              dataType: "text",
-              success: function(data){
-                that.menu_item = _.template(data);
-              }
-    });
-
-    // load the main listing template
-    $.ajax({url:"templates/main_listing.template",
-              type: "GET",
-              dataType: "text",
-              success: function(data){
-                that.main_listing = _.template(data);
-              }
-    });
-
     // load the session data
-    jQuery.getJSON("data/schedule.json", function(data){
-      that.schedule = data;
-      that.createSideBar();
-    });
+    this.schedule = data;
+    this.createSideBar();
+  },
 
+  showDefault: function() {
+    $("#mainListing").html(this.default_listing());
+  },
+
+  populateMainListing: function(day, index) {
+    var listing = this.schedule[day][index];
+    $("#mainListing").html(this.main_listing({
+        title: listing.title,
+        time: listing.time
+    }));
   },
 
   createSideBar: function(){
     that = this;
-    this.menu_header = _.template("<li class='nav-header'><%=title%></li>\n");
-    var htmlBuffer = this.menu_header({"title":"Friday"});
-    $.each(this.schedule["Friday"], function(index, value){
-      htmlBuffer +=that.menu_item(value);
-    });
-
-    htmlBuffer += this.menu_header({"title":"Saturday"});
-    $.each(this.schedule["Saturday"], function(index, value){
-      htmlBuffer +=that.menu_item(value);
-    });
+    var htmlBuffer = "";
+    for (var day in that.schedule) {
+        htmlBuffer += that.menu_header({"title":"Friday"});
+        $.each(that.schedule[day], function(index, value){
+          htmlBuffer +=that.menu_item({
+              index: index,
+              day: day,
+              time: value.time,
+              title: value.title
+          });
+        });
+    }
     $('#roflbar').html(htmlBuffer);
   },
 
@@ -52,8 +47,26 @@ var ROFLView = Backbone.View.extend({
   cleanEvent: function(e){
     e.stopPropagation()
     e.preventDefault()
-  },
+  }
 
 });
 
-var roflView = new ROFLView;
+jQuery.getJSON("data/schedule.json", function(data){
+    var roflView = new ROFLView(data);
+    var ROFLRouter = Backbone.Router.extend({
+        routes: {
+            ":day/:index": 'showPanel',
+            "": 'showDefault'
+        },
+        showPanel: function(day, index) {
+            roflView.populateMainListing(day, parseInt(index));
+        },
+        showDefault: function() {
+            roflView.showDefault();
+        }
+
+    });
+    var router = new ROFLRouter();
+    Backbone.history.start({pushState: false, root: "/"})
+});
+
