@@ -5,7 +5,6 @@ var ROFLView = Backbone.View.extend({
   menu_header: _.template("<li class='nav-header'><%=title%></li>\n"),
 
   initialize: function(data){
-    _.bindAll(this, 'selectItem');
     that = this;
     // load the session data
     this.schedule = data;
@@ -14,6 +13,7 @@ var ROFLView = Backbone.View.extend({
 
   showDefault: function() {
     $("#mainListing").html(this.default_listing());
+    $('#actions').addClass('disabled');
   },
 
   populateMainListing: function(day, index) {
@@ -26,18 +26,11 @@ var ROFLView = Backbone.View.extend({
     $('#linkhound').attr('href', listing.url);
     $('#sweeper').attr('href', listing.url);
     $('#read').attr('href', listing.url);
+    $('#actions').removeClass("disabled");
   },
 
   followURL: function(e){
     alert("hat");
-  },
-
-  selectItem: function(e){
-    that = this;
-    $.each($('#roflbar li'), function(index, value){
-      value.removeClass('active')
-    });
-    $(e.target).addClass('active');
   },
 
   createSideBar: function(){

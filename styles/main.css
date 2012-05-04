@@ -47,3 +47,7 @@ a:hover{
           transition: background-position 0.1s linear;
 }
 
+/* for livenotes thing */
+.disabled{
+  display:none;
+}
