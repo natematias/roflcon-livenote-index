@@ -2,4 +2,9 @@
             <h1><%=title%></h1>
             <h2>Time: <%=time%></h2>
             <p>Here is a description about liveblogging, with links to the hashtag and mstem and natematias's twitter accounts.</p>
+            <ul>
+              <li><a href="http://civic.mit.edu/blog/mstem/how-to-liveblog-events-with-a-team">How to liveblog with a team</a></li>
+              <li><a href="http://www.lunchoverip.com/conferencebloggers.html">Tips for Conference Bloggers</a></li>
+            </ul>
+
  </div>
