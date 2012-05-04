@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>ROFLCon Livenote Index</title>
+    <title>ROFLCon Liveblog Index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>-->
-          <a class="brand" href="#">ROFLCon Livenote Index</a>
+          <a class="brand" href="#">ROFLCon Liveblog Index</a>
 <!--          <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <i class="icon-user"></i> Username
@@ -87,29 +87,40 @@
           </div>
           <div class="row-fluid">
             <div class="span4">
+              <!--<h2>Ghost</h2>-->
+              <p><a class="btn btn-large" id="read" href="#">Read Livenotes &raquo;</a></p>
+              <p>Let me in; I just want to follow the livenotes!</p>
+              <p>If you do see an awesome quote we missed, please add it.</p>
+            </div><!--/span-->
+            <div class="span4">
               <!--<h2>Link Hound</h2>-->
-              <p><a class="btn btn-large" href="#">Play Link Hound &raquo;</a></p>
+              <p><a class="btn btn-large" id="linkhound" href="#">Play Link Hound &raquo;</a></p>
               <p>Volunteer to find links, inserting them into the livenotes. <strong>Use html formatting, please</strong>! Feel free to add nice-to-have information like Twitter handles and event photos.</p>
             </div><!--/span-->
             <div class="span4">
               <!--<h2>Sweeper</h2>-->
-              <p><a class="btn btn-large" href="#">Play Sweeper &raquo;</a></p>
+              <p><a class="btn btn-large" id="sweeper" href="#">Play Sweeper &raquo;</a></p>
               <p>Volunteer to check the speaker's facts, fix grammar mistakes, and tidy up the content.</p>
             </div><!--/span-->
-            <div class="span4">
-              <!--<h2>Ghost</h2>-->
-              <p><a class="btn btn-large" href="#">Read Livenotes &raquo;</a></p>
-              <p>Let me in; I just want to follow the livenotes!</p>
-              <p>If you see a quote missed by the livenotes, please add them in.</p>
-            </div><!--/span-->
           </div><!--/row-->
+          <div class="row-fluid">
+            <hr>
+            <div class="span8">
+                    <h2>More Tips on Liveblogging</h2>
+                    <ul>
+                      <li><a href="http://civic.mit.edu/blog/mstem/how-to-livebl
+og-events-with-a-team">How to liveblog with a team</a>, by Matt Stempeck and Ethan Zuckerman</li>
+                      <li><a href="http://www.lunchoverip.com/conferencebloggers.html">Tips for Conference Bloggers</a>, by Bruno Guissani and Ethan Zuckerman</li>
+                    </ul>
+            </div> 
+          </div>
         </div><!--/span-->
       </div><!--/row-->
 
       <hr>
 
       <footer>
-        <p>ROFLCon Livenote Index by <a href="http://twitter.com/natematias">J. Nathan Matias</a>, from the MIT Media Lab <a href="http://civic.mit.edu">Center for Civic Media</a></p>
+        <p>ROFLCon Livenote Index by <a href="http://twitter.com/natematias">J. Nathan Matias</a> and <a href="http://twitter.com/cdetar">Charlie DeTar</a>, from the MIT Media Lab <a href="http://civic.mit.edu">Center for Civic Media</a>. <a href="https://github.com/natematias/roflcon-livenote-index">Fork it on Github</a></p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -124,18 +135,22 @@
          <div class="hero-unit">
                     <h1><%=title%></h1>
                     <h2>Time: <%=time%></h2>
-                    <p>Here is a description about liveblogging, with links to the hashtag and mstem and natematias's twitter accounts.</p>
-                    <ul>
-                      <li><a href="http://civic.mit.edu/blog/mstem/how-to-liveblog-events-with-a-team">How to liveblog with a team</a></li>
-                      <li><a href="http://www.lunchoverip.com/conferencebloggers.html">Tips for Conference Bloggers</a></li>
-                    </ul>
+                    <p><%=desc%></p>
+                    <hr/>
+                    <p>Click below to follow the liveblog for this session of <a href="http://roflcon.org/the-roflcon-iii-almost-final-schedule/">ROFLCON</a>! Pick a role to join the Google Docs, where you can help out or just read.</p> <p><strong>Top Tip</strong>: it helps to have just one person producing core text. You can best help by adding links and cleaning up.</p>
+<p>ROFLCon is being liveblogged by <a href="http://twitter.com/natematias">J. Nathan Matias</a>, <a href="http://twitter.com/mstem">Matt Stempeck</a>, and <a href="http://twitter.com/s2tephen">Stephen Suen</a>.</p>
          </div>
      </script>
      <script type='text/template' id='menuItemTemplate'>
          <li><a href="#<%=day%>/<%=index%>"><%=time%>: <%=title%></a></li>
     </script>
     <script type='text/template' id='defaultListingTemplate'>
-        ... all about live notes ...
+      <div class="hero-unit">
+                    <h1>ROFLCon Liveblogs</h1>
+                    <p><a href="http://roflcon.org/the-roflcon-iii-almost-final-schedule/">ROFLCon</a> is being liveblogged by <a href="http://twitter.com/natematias">J. Nathan Matias</a>, <a href="http
+://twitter.com/mstem">Matt Stempeck</a>, and <a href="http://twitter.com/s2tephe
+n">Stephen Suen</a>.</p>
+      </div>
     </script>
 
     <script language="javascript" type="text/Javascript" src="app/views.js"></script>
