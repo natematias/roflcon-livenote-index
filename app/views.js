@@ -44,7 +44,7 @@ var ROFLView = Backbone.View.extend({
     that = this;
     var htmlBuffer = "";
     for (var day in that.schedule) {
-        htmlBuffer += that.menu_header({"title":"Friday"});
+        htmlBuffer += that.menu_header({"title": day});
         $.each(that.schedule[day], function(index, value){
           htmlBuffer +=that.menu_item({
               index: index,
